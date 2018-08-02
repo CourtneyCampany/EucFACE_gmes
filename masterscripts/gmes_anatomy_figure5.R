@@ -2,12 +2,13 @@
 
 
 #gmes and leaf internal anatomy
-source("C:/R-projects/EucFACE_gmes/masterscripts/functions.R")
+# source("C:/R-projects/EucFACE_gmes/masterscripts/functions.R")
+source("masterscripts/functions.R")
 
 # read and format data ----------------------------------------------------
 #data <-read.csv("C:/R-projects/EucFACE_gmes/masterscripts/Master_data_file_clean.csv")
 #data2 <-read.csv("C:/R-projects/EucFACE_gmes/masterscripts/Tree-means_Gm-master2.csv")
-data <-read.csv("Master_data_file_clean-reconst.csv")
+data <-read.csv("masterscripts/Master_data_file_clean-reconst.csv")
 
 gmes <- gmes_format_func(data)
 
@@ -72,7 +73,8 @@ library(scales)
 library(plotrix)
 
 #2panel plots----------------------------------------
-windows(10,6)
+# windows(10,6)
+png(filename = "output/Figure5.png", height = 6, width = 10, units = "in", res= 400)
 par(mfrow=c(1,2), las=1, mgp=c(3,1,0), oma=c(5,5,1,1))
 
 par(mar=c(0,0,0,0),xpd=TRUE )
@@ -94,6 +96,6 @@ mtext(side=1, at=300, line=3,text=mesolab, xpd=TRUE, las=1, cex=1.25)
 text('B', x=200, y=.55, cex=1.25)
 legend("topright", leglab, pch=legpch2, col=allcols,inset = 0.01, bty='n',cex=1)
 
-dev.copy2pdf(file= "master_scripts/gm_anatomy_fig3.pdf")
+# dev.copy2pdf(file= "output/Figure5.pdf")
 dev.off()
 

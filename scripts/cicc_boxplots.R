@@ -50,5 +50,5 @@ mtext(eclc, side=1,at=3, line=2.5, cex=.7)
 mtext(ecuc, side=1,at=4, line=2.5, cex=.7)
 text(x=.55, y=425, "C", cex=1.25)
 
-dev.copy2pdf(file= "C:/R-projects/EucFACE_gmes/masterscripts/cicc_3box.pdf")
+dev.copy2pdf(file= "C:/R-projects/EucFACE_gmes/output/cicc_3box.pdf")
 dev.off()

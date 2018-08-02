@@ -28,8 +28,8 @@ datelab <- as.Date("2016-04-01")
 pchs2 <- c(1,1,16,16)
 
 #plotting---------
-# windows()
-png(filename = "output/campaigns.png", height = 11, width = 8.5, units = "in", res= 400)
+windows()
+# png(filename = "output/Figure1.png", height = 11, width = 8.5, units = "in", res= 400)
 par(oma=c(5,7,3,1), mfrow=c(4,2), mar=c(0,0,0,0), pch=16, lwd=1.25)
 
 #photosynthesis-aco2
@@ -132,8 +132,7 @@ with(eco2, arrows(Date, LMA, Date, LMA+se.LMA, angle=90, lwd=1,
 with(eco2, arrows(Date, LMA, Date, LMA-se.LMA, angle=90, lwd=1,
                   length=.03))
 text(datelab, 230, "H",cex=1.2)
-
-# dev.copy2pdf(file= "output/campaigns.pdf")
+dev.copy2pdf(file= "output/Figure1.pdf")
 dev.off()
 
 

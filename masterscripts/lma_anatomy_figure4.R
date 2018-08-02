@@ -94,8 +94,8 @@ mod_lma_mesothick_ac <- lm(LMA~meso.mean, data=ac)
 mod_lma_mesothick_low <- lm(LMA~meso.mean, data=low)
 mod_lma_uppderm <- lm(LMA~epi_low, data=low)
 
-windows()
-# png(filename = "output/Figure4.png", height = 7, width = 7, units = "in", res= 400)
+# windows()
+png(filename = "output/Figure4.png", height = 7, width = 7, units = "in", res= 400)
 par(las=1, mgp=c(3,1,0), mar=c(5,5,1,1))
 
 plot(LMA~meso.mean, data=gmes,ylim=c(100, 300), xlim=c(200, 400), type='n', 
@@ -106,10 +106,10 @@ ablineclip(mod_lma_mesothick_ac, x1=min(ac$meso.mean), x2=max(ac$meso.mean),
 points(LMA~meso.mean, data=ac, col=co2grow, pch=pchs[canopy], cex=1.5)
 
 ablineclip(mod_lma_mesothick_low, x1=min(low$meso.mean), x2=max(low$meso.mean),
-           lwd=2, lty=1) #lower
+           lwd=2, lty=1) #lower canopy
 points(LMA~meso.mean, data=low, col=co2grow, pch=pchs[canopy], cex=1.5)
 
 legend("topright", leglab, pch=legpch2, col=allcols,inset = 0.01, bty='n',cex=1)
 
-dev.copy2pdf(file= "output/Figure4.pdf")
+# dev.copy2pdf(file= "output/Figure4.pdf")
 dev.off()
