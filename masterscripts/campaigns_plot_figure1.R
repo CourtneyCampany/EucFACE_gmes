@@ -1,10 +1,10 @@
 ##gas exchange campaigns------
 
-ge <- read.csv("TreeMeans_EucFACE_Campaigns.csv")
+ge <- read.csv("masterscripts/face_photo_campaigns.csv") ##different file used here with cleaned csv
   ge <- ge[complete.cases(ge),]
   ge <- droplevels(ge)
   ge$Date <- paste(ge$Campaign, "01", sep="_")
-  ge$Date <- as.Date(ge$Date, format="%b_%Y_%d") #Date does not work
+  ge$Date <- as.Date(ge$Date, format="%b_%Y_%d") 
 
 aco2 <- ge[ge$C.treat == "+C",]
 eco2 <- ge[ge$C.treat == "0C",]
@@ -28,7 +28,8 @@ datelab <- as.Date("2016-04-01")
 pchs2 <- c(1,1,16,16)
 
 #plotting---------
-windows()
+# windows()
+png(filename = "output/campaigns.png", height = 11, width = 8.5, units = "in", res= 400)
 par(oma=c(5,7,3,1), mfrow=c(4,2), mar=c(0,0,0,0), pch=16, lwd=1.25)
 
 #photosynthesis-aco2
@@ -36,9 +37,9 @@ plot(Photo ~ Date, data=aco2_low, type="b", pch=pchs2,lty=3,
      xlab="",ylab="", ylim=c(0, 25), xaxt='n', cex=1.25, xlim=daterange)
 points(Photo ~ Date, data=aco2_upp,  cex=1.25, type="b",pch=pchs2)
 axis(1, labels=FALSE, at=unique(aco2$Date))
-with(aco2, arrows(Date, Photo, Date, Photo+se.Photo, angle=90, lwd=1,
+with(aco2, arrows(Date, Photo, Date, Photo+se.photo, angle=90, lwd=1,
                     length=.03))
-with(aco2, arrows(Date, Photo, Date, Photo-se.Photo, angle=90, lwd=1,
+with(aco2, arrows(Date, Photo, Date, Photo-se.photo, angle=90, lwd=1,
                   length=.03))
 mtext(photolab, side=2, line=4, cex=.8)
 legend("bottomleft", legend=c("Mature Leaves", "New Leaves", "Upper Canopy", "Lower Canopy"),
@@ -51,9 +52,9 @@ plot(Photo ~ Date, data=eco2_low,  type="b", pch=pchs2,lty=3,
      xlab="",ylab="", ylim=c(0, 25), xaxt='n', yaxt='n', cex=1.25, xlim=daterange)
 points(Photo ~ Date, data=eco2_upp, cex=1.25, type="b",pch=pchs2)
 axis(2, labels=FALSE, tcl=.5)
-with(eco2, arrows(Date, Photo, Date, Photo+se.Photo, angle=90, lwd=1,
+with(eco2, arrows(Date, Photo, Date, Photo+se.photo, angle=90, lwd=1,
                   length=.03))
-with(eco2, arrows(Date, Photo, Date, Photo- se.Photo, angle=90, lwd=1,
+with(eco2, arrows(Date, Photo, Date, Photo-se.photo, angle=90, lwd=1,
                   length=.03))
 mtext(expression(Elevated~CO[2]), side=3, line=1, cex=.8)
 text(datelab, 24, "B", cex=1.2)
@@ -132,7 +133,7 @@ with(eco2, arrows(Date, LMA, Date, LMA-se.LMA, angle=90, lwd=1,
                   length=.03))
 text(datelab, 230, "H",cex=1.2)
 
-dev.copy2pdf(file= "master_scripts/campaigns.pdf")
+# dev.copy2pdf(file= "output/campaigns.pdf")
 dev.off()
 
 
